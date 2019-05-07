@@ -1,0 +1,841 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "accountName": {
+            "required": true,
+            "type": "string"
+        },
+        "streamingPolicyName": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "description": "The core properties of ARM resources.",
+                            "properties": {
+                                "id": {
+                                    "description": "Fully qualified resource ID for the resource.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "The name of the resource.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "description": "The type of the resource.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                }
+                            },
+                            "x-ms-azure-resource": true,
+                            "type": "object"
+                        }
+                    ],
+                    "description": "The resource model definition for a ARM proxy resource."
+                }
+            ],
+            "description": "A Streaming Policy resource",
+            "properties": {
+                "properties": {
+                    "x-ms-client-flatten": true,
+                    "description": "Class to specify properties of Streaming Policy",
+                    "properties": {
+                        "commonEncryptionCbcs": {
+                            "description": "Configuration of CommonEncryptionCbcs",
+                            "properties": {
+                                "clearTracks": {
+                                    "description": "Representing which tracks should not be encrypted",
+                                    "items": {
+                                        "description": "Class to select a track",
+                                        "properties": {
+                                            "trackSelections": {
+                                                "description": "TrackSelections is a track property condition list which can specify track(s)",
+                                                "items": {
+                                                    "description": "Class to specify one track property condition",
+                                                    "properties": {
+                                                        "operation": {
+                                                            "description": "Track property condition operation",
+                                                            "enum": [
+                                                                "Unknown",
+                                                                "Equal"
+                                                            ],
+                                                            "type": "string",
+                                                            "x-ms-enum": {
+                                                                "modelAsString": true,
+                                                                "name": "TrackPropertyCompareOperation",
+                                                                "values": [
+                                                                    {
+                                                                        "description": "Unknown track property compare operation",
+                                                                        "value": "Unknown"
+                                                                    },
+                                                                    {
+                                                                        "description": "Equal operation",
+                                                                        "value": "Equal"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        },
+                                                        "property": {
+                                                            "description": "Track property type",
+                                                            "enum": [
+                                                                "Unknown",
+                                                                "FourCC"
+                                                            ],
+                                                            "type": "string",
+                                                            "x-ms-enum": {
+                                                                "modelAsString": true,
+                                                                "name": "TrackPropertyType",
+                                                                "values": [
+                                                                    {
+                                                                        "description": "Unknown track property",
+                                                                        "value": "Unknown"
+                                                                    },
+                                                                    {
+                                                                        "description": "Track FourCC",
+                                                                        "value": "FourCC"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        },
+                                                        "value": {
+                                                            "description": "Track property value",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "property",
+                                                        "operation"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                "type": "array"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "contentKeys": {
+                                    "description": "Representing default content key for each encryption scheme and separate content keys for specific tracks",
+                                    "properties": {
+                                        "defaultKey": {
+                                            "description": "Default content key for an encryption scheme",
+                                            "properties": {
+                                                "label": {
+                                                    "description": "Label can be used to specify Content Key when creating a Streaming Locator",
+                                                    "type": "string"
+                                                },
+                                                "policyName": {
+                                                    "description": "Policy used by Default Key",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "keyToTrackMappings": {
+                                            "description": "Representing tracks needs separate content key",
+                                            "items": {
+                                                "description": "Class to specify properties of content key",
+                                                "properties": {
+                                                    "label": {
+                                                        "description": "Label can be used to specify Content Key when creating a Streaming Locator",
+                                                        "type": "string"
+                                                    },
+                                                    "policyName": {
+                                                        "description": "Policy used by Content Key",
+                                                        "type": "string"
+                                                    },
+                                                    "tracks": {
+                                                        "description": "Tracks which use this content key",
+                                                        "items": {
+                                                            "description": "Class to select a track",
+                                                            "properties": {
+                                                                "trackSelections": {
+                                                                    "description": "TrackSelections is a track property condition list which can specify track(s)",
+                                                                    "items": {
+                                                                        "description": "Class to specify one track property condition",
+                                                                        "properties": {
+                                                                            "operation": {
+                                                                                "description": "Track property condition operation",
+                                                                                "enum": [
+                                                                                    "Unknown",
+                                                                                    "Equal"
+                                                                                ],
+                                                                                "type": "string",
+                                                                                "x-ms-enum": {
+                                                                                    "modelAsString": true,
+                                                                                    "name": "TrackPropertyCompareOperation",
+                                                                                    "values": [
+                                                                                        {
+                                                                                            "description": "Unknown track property compare operation",
+                                                                                            "value": "Unknown"
+                                                                                        },
+                                                                                        {
+                                                                                            "description": "Equal operation",
+                                                                                            "value": "Equal"
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            },
+                                                                            "property": {
+                                                                                "description": "Track property type",
+                                                                                "enum": [
+                                                                                    "Unknown",
+                                                                                    "FourCC"
+                                                                                ],
+                                                                                "type": "string",
+                                                                                "x-ms-enum": {
+                                                                                    "modelAsString": true,
+                                                                                    "name": "TrackPropertyType",
+                                                                                    "values": [
+                                                                                        {
+                                                                                            "description": "Unknown track property",
+                                                                                            "value": "Unknown"
+                                                                                        },
+                                                                                        {
+                                                                                            "description": "Track FourCC",
+                                                                                            "value": "FourCC"
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            },
+                                                                            "value": {
+                                                                                "description": "Track property value",
+                                                                                "type": "string"
+                                                                            }
+                                                                        },
+                                                                        "required": [
+                                                                            "property",
+                                                                            "operation"
+                                                                        ],
+                                                                        "type": "object"
+                                                                    },
+                                                                    "type": "array"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        },
+                                                        "type": "array"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "drm": {
+                                    "description": "Configuration of DRMs for current encryption scheme",
+                                    "properties": {
+                                        "fairPlay": {
+                                            "description": "FairPlay configurations",
+                                            "properties": {
+                                                "allowPersistentLicense": {
+                                                    "description": "All license to be persistent or not",
+                                                    "type": "boolean"
+                                                },
+                                                "customLicenseAcquisitionUrlTemplate": {
+                                                    "description": "Template for the URL of the custom service delivering licenses to end user players.  Not required when using Azure Media Services for issuing licenses.  The template supports replaceable tokens that the service will update at runtime with the value specific to the request.  The currently supported token values are {AlternativeMediaId}, which is replaced with the value of StreamingLocatorId.AlternativeMediaId, and {ContentKeyId}, which is replaced with the value of identifier of the key being requested.",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "allowPersistentLicense"
+                                            ],
+                                            "type": "object"
+                                        },
+                                        "playReady": {
+                                            "description": "PlayReady configurations",
+                                            "properties": {
+                                                "customLicenseAcquisitionUrlTemplate": {
+                                                    "description": "Template for the URL of the custom service delivering licenses to end user players.  Not required when using Azure Media Services for issuing licenses.  The template supports replaceable tokens that the service will update at runtime with the value specific to the request.  The currently supported token values are {AlternativeMediaId}, which is replaced with the value of StreamingLocatorId.AlternativeMediaId, and {ContentKeyId}, which is replaced with the value of identifier of the key being requested.",
+                                                    "type": "string"
+                                                },
+                                                "playReadyCustomAttributes": {
+                                                    "description": "Custom attributes for PlayReady",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "widevine": {
+                                            "description": "Widevine configurations",
+                                            "properties": {
+                                                "customLicenseAcquisitionUrlTemplate": {
+                                                    "description": "Template for the URL of the custom service delivering licenses to end user players.  Not required when using Azure Media Services for issuing licenses.  The template supports replaceable tokens that the service will update at runtime with the value specific to the request.  The currently supported token values are {AlternativeMediaId}, which is replaced with the value of StreamingLocatorId.AlternativeMediaId, and {ContentKeyId}, which is replaced with the value of identifier of the key being requested.",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "enabledProtocols": {
+                                    "description": "Representing supported protocols",
+                                    "properties": {
+                                        "dash": {
+                                            "description": "Enable DASH protocol or not",
+                                            "type": "boolean"
+                                        },
+                                        "download": {
+                                            "description": "Enable Download protocol or not",
+                                            "type": "boolean"
+                                        },
+                                        "hls": {
+                                            "description": "Enable HLS protocol or not",
+                                            "type": "boolean"
+                                        },
+                                        "smoothStreaming": {
+                                            "description": "Enable SmoothStreaming protocol or not",
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "required": [
+                                        "download",
+                                        "dash",
+                                        "hls",
+                                        "smoothStreaming"
+                                    ],
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "commonEncryptionCenc": {
+                            "description": "Configuration of CommonEncryptionCenc",
+                            "properties": {
+                                "clearTracks": {
+                                    "description": "Representing which tracks should not be encrypted",
+                                    "items": {
+                                        "description": "Class to select a track",
+                                        "properties": {
+                                            "trackSelections": {
+                                                "description": "TrackSelections is a track property condition list which can specify track(s)",
+                                                "items": {
+                                                    "description": "Class to specify one track property condition",
+                                                    "properties": {
+                                                        "operation": {
+                                                            "description": "Track property condition operation",
+                                                            "enum": [
+                                                                "Unknown",
+                                                                "Equal"
+                                                            ],
+                                                            "type": "string",
+                                                            "x-ms-enum": {
+                                                                "modelAsString": true,
+                                                                "name": "TrackPropertyCompareOperation",
+                                                                "values": [
+                                                                    {
+                                                                        "description": "Unknown track property compare operation",
+                                                                        "value": "Unknown"
+                                                                    },
+                                                                    {
+                                                                        "description": "Equal operation",
+                                                                        "value": "Equal"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        },
+                                                        "property": {
+                                                            "description": "Track property type",
+                                                            "enum": [
+                                                                "Unknown",
+                                                                "FourCC"
+                                                            ],
+                                                            "type": "string",
+                                                            "x-ms-enum": {
+                                                                "modelAsString": true,
+                                                                "name": "TrackPropertyType",
+                                                                "values": [
+                                                                    {
+                                                                        "description": "Unknown track property",
+                                                                        "value": "Unknown"
+                                                                    },
+                                                                    {
+                                                                        "description": "Track FourCC",
+                                                                        "value": "FourCC"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        },
+                                                        "value": {
+                                                            "description": "Track property value",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "property",
+                                                        "operation"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                "type": "array"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "contentKeys": {
+                                    "description": "Representing default content key for each encryption scheme and separate content keys for specific tracks",
+                                    "properties": {
+                                        "defaultKey": {
+                                            "description": "Default content key for an encryption scheme",
+                                            "properties": {
+                                                "label": {
+                                                    "description": "Label can be used to specify Content Key when creating a Streaming Locator",
+                                                    "type": "string"
+                                                },
+                                                "policyName": {
+                                                    "description": "Policy used by Default Key",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "keyToTrackMappings": {
+                                            "description": "Representing tracks needs separate content key",
+                                            "items": {
+                                                "description": "Class to specify properties of content key",
+                                                "properties": {
+                                                    "label": {
+                                                        "description": "Label can be used to specify Content Key when creating a Streaming Locator",
+                                                        "type": "string"
+                                                    },
+                                                    "policyName": {
+                                                        "description": "Policy used by Content Key",
+                                                        "type": "string"
+                                                    },
+                                                    "tracks": {
+                                                        "description": "Tracks which use this content key",
+                                                        "items": {
+                                                            "description": "Class to select a track",
+                                                            "properties": {
+                                                                "trackSelections": {
+                                                                    "description": "TrackSelections is a track property condition list which can specify track(s)",
+                                                                    "items": {
+                                                                        "description": "Class to specify one track property condition",
+                                                                        "properties": {
+                                                                            "operation": {
+                                                                                "description": "Track property condition operation",
+                                                                                "enum": [
+                                                                                    "Unknown",
+                                                                                    "Equal"
+                                                                                ],
+                                                                                "type": "string",
+                                                                                "x-ms-enum": {
+                                                                                    "modelAsString": true,
+                                                                                    "name": "TrackPropertyCompareOperation",
+                                                                                    "values": [
+                                                                                        {
+                                                                                            "description": "Unknown track property compare operation",
+                                                                                            "value": "Unknown"
+                                                                                        },
+                                                                                        {
+                                                                                            "description": "Equal operation",
+                                                                                            "value": "Equal"
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            },
+                                                                            "property": {
+                                                                                "description": "Track property type",
+                                                                                "enum": [
+                                                                                    "Unknown",
+                                                                                    "FourCC"
+                                                                                ],
+                                                                                "type": "string",
+                                                                                "x-ms-enum": {
+                                                                                    "modelAsString": true,
+                                                                                    "name": "TrackPropertyType",
+                                                                                    "values": [
+                                                                                        {
+                                                                                            "description": "Unknown track property",
+                                                                                            "value": "Unknown"
+                                                                                        },
+                                                                                        {
+                                                                                            "description": "Track FourCC",
+                                                                                            "value": "FourCC"
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            },
+                                                                            "value": {
+                                                                                "description": "Track property value",
+                                                                                "type": "string"
+                                                                            }
+                                                                        },
+                                                                        "required": [
+                                                                            "property",
+                                                                            "operation"
+                                                                        ],
+                                                                        "type": "object"
+                                                                    },
+                                                                    "type": "array"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        },
+                                                        "type": "array"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "drm": {
+                                    "description": "Configuration of DRMs for CommonEncryptionCenc encryption scheme",
+                                    "properties": {
+                                        "playReady": {
+                                            "description": "PlayReady configurations",
+                                            "properties": {
+                                                "customLicenseAcquisitionUrlTemplate": {
+                                                    "description": "Template for the URL of the custom service delivering licenses to end user players.  Not required when using Azure Media Services for issuing licenses.  The template supports replaceable tokens that the service will update at runtime with the value specific to the request.  The currently supported token values are {AlternativeMediaId}, which is replaced with the value of StreamingLocatorId.AlternativeMediaId, and {ContentKeyId}, which is replaced with the value of identifier of the key being requested.",
+                                                    "type": "string"
+                                                },
+                                                "playReadyCustomAttributes": {
+                                                    "description": "Custom attributes for PlayReady",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "widevine": {
+                                            "description": "Widevine configurations",
+                                            "properties": {
+                                                "customLicenseAcquisitionUrlTemplate": {
+                                                    "description": "Template for the URL of the custom service delivering licenses to end user players.  Not required when using Azure Media Services for issuing licenses.  The template supports replaceable tokens that the service will update at runtime with the value specific to the request.  The currently supported token values are {AlternativeMediaId}, which is replaced with the value of StreamingLocatorId.AlternativeMediaId, and {ContentKeyId}, which is replaced with the value of identifier of the key being requested.",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "enabledProtocols": {
+                                    "description": "Representing supported protocols",
+                                    "properties": {
+                                        "dash": {
+                                            "description": "Enable DASH protocol or not",
+                                            "type": "boolean"
+                                        },
+                                        "download": {
+                                            "description": "Enable Download protocol or not",
+                                            "type": "boolean"
+                                        },
+                                        "hls": {
+                                            "description": "Enable HLS protocol or not",
+                                            "type": "boolean"
+                                        },
+                                        "smoothStreaming": {
+                                            "description": "Enable SmoothStreaming protocol or not",
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "required": [
+                                        "download",
+                                        "dash",
+                                        "hls",
+                                        "smoothStreaming"
+                                    ],
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "created": {
+                            "description": "Creation time of Streaming Policy",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "type": "string",
+                            "nullable": false
+                        },
+                        "defaultContentKeyPolicyName": {
+                            "description": "Default ContentKey used by current Streaming Policy",
+                            "type": "string"
+                        },
+                        "envelopeEncryption": {
+                            "description": "Configuration of EnvelopeEncryption",
+                            "properties": {
+                                "clearTracks": {
+                                    "description": "Representing which tracks should not be encrypted",
+                                    "items": {
+                                        "description": "Class to select a track",
+                                        "properties": {
+                                            "trackSelections": {
+                                                "description": "TrackSelections is a track property condition list which can specify track(s)",
+                                                "items": {
+                                                    "description": "Class to specify one track property condition",
+                                                    "properties": {
+                                                        "operation": {
+                                                            "description": "Track property condition operation",
+                                                            "enum": [
+                                                                "Unknown",
+                                                                "Equal"
+                                                            ],
+                                                            "type": "string",
+                                                            "x-ms-enum": {
+                                                                "modelAsString": true,
+                                                                "name": "TrackPropertyCompareOperation",
+                                                                "values": [
+                                                                    {
+                                                                        "description": "Unknown track property compare operation",
+                                                                        "value": "Unknown"
+                                                                    },
+                                                                    {
+                                                                        "description": "Equal operation",
+                                                                        "value": "Equal"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        },
+                                                        "property": {
+                                                            "description": "Track property type",
+                                                            "enum": [
+                                                                "Unknown",
+                                                                "FourCC"
+                                                            ],
+                                                            "type": "string",
+                                                            "x-ms-enum": {
+                                                                "modelAsString": true,
+                                                                "name": "TrackPropertyType",
+                                                                "values": [
+                                                                    {
+                                                                        "description": "Unknown track property",
+                                                                        "value": "Unknown"
+                                                                    },
+                                                                    {
+                                                                        "description": "Track FourCC",
+                                                                        "value": "FourCC"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        },
+                                                        "value": {
+                                                            "description": "Track property value",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "property",
+                                                        "operation"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                "type": "array"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "contentKeys": {
+                                    "description": "Representing default content key for each encryption scheme and separate content keys for specific tracks",
+                                    "properties": {
+                                        "defaultKey": {
+                                            "description": "Default content key for an encryption scheme",
+                                            "properties": {
+                                                "label": {
+                                                    "description": "Label can be used to specify Content Key when creating a Streaming Locator",
+                                                    "type": "string"
+                                                },
+                                                "policyName": {
+                                                    "description": "Policy used by Default Key",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "keyToTrackMappings": {
+                                            "description": "Representing tracks needs separate content key",
+                                            "items": {
+                                                "description": "Class to specify properties of content key",
+                                                "properties": {
+                                                    "label": {
+                                                        "description": "Label can be used to specify Content Key when creating a Streaming Locator",
+                                                        "type": "string"
+                                                    },
+                                                    "policyName": {
+                                                        "description": "Policy used by Content Key",
+                                                        "type": "string"
+                                                    },
+                                                    "tracks": {
+                                                        "description": "Tracks which use this content key",
+                                                        "items": {
+                                                            "description": "Class to select a track",
+                                                            "properties": {
+                                                                "trackSelections": {
+                                                                    "description": "TrackSelections is a track property condition list which can specify track(s)",
+                                                                    "items": {
+                                                                        "description": "Class to specify one track property condition",
+                                                                        "properties": {
+                                                                            "operation": {
+                                                                                "description": "Track property condition operation",
+                                                                                "enum": [
+                                                                                    "Unknown",
+                                                                                    "Equal"
+                                                                                ],
+                                                                                "type": "string",
+                                                                                "x-ms-enum": {
+                                                                                    "modelAsString": true,
+                                                                                    "name": "TrackPropertyCompareOperation",
+                                                                                    "values": [
+                                                                                        {
+                                                                                            "description": "Unknown track property compare operation",
+                                                                                            "value": "Unknown"
+                                                                                        },
+                                                                                        {
+                                                                                            "description": "Equal operation",
+                                                                                            "value": "Equal"
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            },
+                                                                            "property": {
+                                                                                "description": "Track property type",
+                                                                                "enum": [
+                                                                                    "Unknown",
+                                                                                    "FourCC"
+                                                                                ],
+                                                                                "type": "string",
+                                                                                "x-ms-enum": {
+                                                                                    "modelAsString": true,
+                                                                                    "name": "TrackPropertyType",
+                                                                                    "values": [
+                                                                                        {
+                                                                                            "description": "Unknown track property",
+                                                                                            "value": "Unknown"
+                                                                                        },
+                                                                                        {
+                                                                                            "description": "Track FourCC",
+                                                                                            "value": "FourCC"
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            },
+                                                                            "value": {
+                                                                                "description": "Track property value",
+                                                                                "type": "string"
+                                                                            }
+                                                                        },
+                                                                        "required": [
+                                                                            "property",
+                                                                            "operation"
+                                                                        ],
+                                                                        "type": "object"
+                                                                    },
+                                                                    "type": "array"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        },
+                                                        "type": "array"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "customKeyAcquisitionUrlTemplate": {
+                                    "description": "Template for the URL of the custom service delivering keys to end user players.  Not required when using Azure Media Services for issuing keys.  The template supports replaceable tokens that the service will update at runtime with the value specific to the request.  The currently supported token values are {AlternativeMediaId}, which is replaced with the value of StreamingLocatorId.AlternativeMediaId, and {ContentKeyId}, which is replaced with the value of identifier of the key being requested.",
+                                    "type": "string"
+                                },
+                                "enabledProtocols": {
+                                    "description": "Representing supported protocols",
+                                    "properties": {
+                                        "dash": {
+                                            "description": "Enable DASH protocol or not",
+                                            "type": "boolean"
+                                        },
+                                        "download": {
+                                            "description": "Enable Download protocol or not",
+                                            "type": "boolean"
+                                        },
+                                        "hls": {
+                                            "description": "Enable HLS protocol or not",
+                                            "type": "boolean"
+                                        },
+                                        "smoothStreaming": {
+                                            "description": "Enable SmoothStreaming protocol or not",
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "required": [
+                                        "download",
+                                        "dash",
+                                        "hls",
+                                        "smoothStreaming"
+                                    ],
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "noEncryption": {
+                            "description": "Configurations of NoEncryption",
+                            "properties": {
+                                "enabledProtocols": {
+                                    "description": "Representing supported protocols",
+                                    "properties": {
+                                        "dash": {
+                                            "description": "Enable DASH protocol or not",
+                                            "type": "boolean"
+                                        },
+                                        "download": {
+                                            "description": "Enable Download protocol or not",
+                                            "type": "boolean"
+                                        },
+                                        "hls": {
+                                            "description": "Enable HLS protocol or not",
+                                            "type": "boolean"
+                                        },
+                                        "smoothStreaming": {
+                                            "description": "Enable SmoothStreaming protocol or not",
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "required": [
+                                        "download",
+                                        "dash",
+                                        "hls",
+                                        "smoothStreaming"
+                                    ],
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

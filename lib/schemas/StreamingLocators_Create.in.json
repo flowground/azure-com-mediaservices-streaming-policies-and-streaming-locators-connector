@@ -1,0 +1,249 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "accountName": {
+            "required": true,
+            "type": "string"
+        },
+        "streamingLocatorName": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "description": "The core properties of ARM resources.",
+                            "properties": {
+                                "id": {
+                                    "description": "Fully qualified resource ID for the resource.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "The name of the resource.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "description": "The type of the resource.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                }
+                            },
+                            "x-ms-azure-resource": true,
+                            "type": "object"
+                        }
+                    ],
+                    "description": "The resource model definition for a ARM proxy resource."
+                }
+            ],
+            "description": "A Streaming Locator resource",
+            "properties": {
+                "properties": {
+                    "x-ms-client-flatten": true,
+                    "description": "Properties of the Streaming Locator.",
+                    "properties": {
+                        "alternativeMediaId": {
+                            "description": "Alternative Media ID of this Streaming Locator",
+                            "type": "string"
+                        },
+                        "assetName": {
+                            "description": "Asset Name",
+                            "type": "string"
+                        },
+                        "contentKeys": {
+                            "description": "The ContentKeys used by this Streaming Locator.",
+                            "items": {
+                                "description": "Class for content key in Streaming Locator",
+                                "properties": {
+                                    "id": {
+                                        "description": "ID of Content Key",
+                                        "format": "uuid",
+                                        "type": "string"
+                                    },
+                                    "labelReferenceInStreamingPolicy": {
+                                        "description": "Label of Content Key as specified in the Streaming Policy",
+                                        "type": "string"
+                                    },
+                                    "policyName": {
+                                        "description": "ContentKeyPolicy used by Content Key",
+                                        "readOnly": true,
+                                        "type": "string"
+                                    },
+                                    "tracks": {
+                                        "description": "Tracks which use this Content Key",
+                                        "items": {
+                                            "description": "Class to select a track",
+                                            "properties": {
+                                                "trackSelections": {
+                                                    "description": "TrackSelections is a track property condition list which can specify track(s)",
+                                                    "items": {
+                                                        "description": "Class to specify one track property condition",
+                                                        "properties": {
+                                                            "operation": {
+                                                                "description": "Track property condition operation",
+                                                                "enum": [
+                                                                    "Unknown",
+                                                                    "Equal"
+                                                                ],
+                                                                "type": "string",
+                                                                "x-ms-enum": {
+                                                                    "modelAsString": true,
+                                                                    "name": "TrackPropertyCompareOperation",
+                                                                    "values": [
+                                                                        {
+                                                                            "description": "Unknown track property compare operation",
+                                                                            "value": "Unknown"
+                                                                        },
+                                                                        {
+                                                                            "description": "Equal operation",
+                                                                            "value": "Equal"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            },
+                                                            "property": {
+                                                                "description": "Track property type",
+                                                                "enum": [
+                                                                    "Unknown",
+                                                                    "FourCC"
+                                                                ],
+                                                                "type": "string",
+                                                                "x-ms-enum": {
+                                                                    "modelAsString": true,
+                                                                    "name": "TrackPropertyType",
+                                                                    "values": [
+                                                                        {
+                                                                            "description": "Unknown track property",
+                                                                            "value": "Unknown"
+                                                                        },
+                                                                        {
+                                                                            "description": "Track FourCC",
+                                                                            "value": "FourCC"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            },
+                                                            "value": {
+                                                                "description": "Track property value",
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "property",
+                                                            "operation"
+                                                        ],
+                                                        "type": "object"
+                                                    },
+                                                    "type": "array"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "readOnly": true,
+                                        "type": "array"
+                                    },
+                                    "type": {
+                                        "description": "Encryption type of Content Key",
+                                        "enum": [
+                                            "CommonEncryptionCenc",
+                                            "CommonEncryptionCbcs",
+                                            "EnvelopeEncryption"
+                                        ],
+                                        "readOnly": true,
+                                        "type": "string",
+                                        "x-ms-enum": {
+                                            "modelAsString": true,
+                                            "name": "StreamingLocatorContentKeyType",
+                                            "values": [
+                                                {
+                                                    "description": "Common Encryption using CENC",
+                                                    "value": "CommonEncryptionCenc"
+                                                },
+                                                {
+                                                    "description": "Common Encryption using CBCS",
+                                                    "value": "CommonEncryptionCbcs"
+                                                },
+                                                {
+                                                    "description": "Envelope Encryption",
+                                                    "value": "EnvelopeEncryption"
+                                                }
+                                            ]
+                                        },
+                                        "nullable": false
+                                    },
+                                    "value": {
+                                        "description": "Value of Content Key",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "id"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "created": {
+                            "description": "The creation time of the Streaming Locator.",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "type": "string",
+                            "nullable": false
+                        },
+                        "defaultContentKeyPolicyName": {
+                            "description": "Name of the default ContentKeyPolicy used by this Streaming Locator.",
+                            "type": "string"
+                        },
+                        "endTime": {
+                            "description": "The end time of the Streaming Locator.",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "filters": {
+                            "description": "A list of asset or account filters which apply to this streaming locator",
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "startTime": {
+                            "description": "The start time of the Streaming Locator.",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "streamingLocatorId": {
+                            "description": "The StreamingLocatorId of the Streaming Locator.",
+                            "format": "uuid",
+                            "type": "string"
+                        },
+                        "streamingPolicyName": {
+                            "description": "Name of the Streaming Policy used by this Streaming Locator. Either specify the name of Streaming Policy you created or use one of the predefined Streaming Policies. The predefined Streaming Policies available are: 'Predefined_DownloadOnly', 'Predefined_ClearStreamingOnly', 'Predefined_DownloadAndClearStreaming', 'Predefined_ClearKey', 'Predefined_MultiDrmCencStreaming' and 'Predefined_MultiDrmStreaming'",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "assetName",
+                        "streamingPolicyName"
+                    ],
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
